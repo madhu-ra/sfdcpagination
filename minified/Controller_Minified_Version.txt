@@ -1,0 +1,30 @@
+public with sharing class ControllerPagination {
+    Public Integer noOfRecords{get; set;}
+    Public Integer size{get;set;}
+    public ApexPages.StandardSetController standardSetCtrl {
+        get{
+            if(standardSetCtrl == null){
+                size = 10;
+                string queryString = 'SELECT Name, Type, BillingCity, BillingState, BillingCountry FROM Account ORDER BY Name';
+				standardSetCtrl = new ApexPages.StandardSetController(Database.getQueryLocator(queryString));
+				standardSetCtrl.setPageSize(size);
+                noOfRecords = standardSetCtrl.getResultSize();
+            }
+            return standardSetCtrl;
+        }set;
+    }
+     
+    Public List<Account> getAccounts(){
+        List<Account> accList = new List<Account>();
+        for(Account a : (List<Account>)standardSetCtrl.getRecords())
+            accList.add(a);
+        return accList;
+    }
+     
+    public pageReference refresh() {
+        standardSetCtrl = null;
+        getAccounts();
+        standardSetCtrl.setPageNumber(1);
+        return null;
+    }
+}
