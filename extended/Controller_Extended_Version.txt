@@ -1,3 +1,6 @@
+//	This version demonstrates how to keep the built-in functionalities in the Apex end
+//	and any custom logic can be applied as per requirement
+
 public with sharing class Pagination {
     Public Integer noOfRecords{get; set;}
     Public Integer size{get;set;}
@@ -49,18 +52,22 @@ public with sharing class Pagination {
     }
   
     public void first() {
+		//any custom logic
         standardSetCtrl.first();
     }
   
     public void last() {
+		//any custom logic
         standardSetCtrl.last();
     }
   
     public void previous() {
+		//any custom logic
         standardSetCtrl.previous();
     }
   
     public void next() {
+		//any custom logic
         standardSetCtrl.next();
     }
 }

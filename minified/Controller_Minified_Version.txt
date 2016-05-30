@@ -1,3 +1,6 @@
+//	This version demonstrates how to keep the built-in functionalities in the VisualForce end
+//	and no much features are used in apex
+
 public with sharing class ControllerPagination {
     Public Integer noOfRecords{get; set;}
     Public Integer size{get;set;}
